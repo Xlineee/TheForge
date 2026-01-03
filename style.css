@@ -1,36 +1,59 @@
 /* =========================
-   ROOT THEME (MONOCHROME)
+   ROOT VARIABLES (THEME)
    ========================= */
 :root {
-    --bg-overlay: rgba(0, 0, 0, 0.65);
+    --text-main: #e6e6e6;
+    --text-muted: #b5b5b5;
 
-    --panel-bg: rgba(18, 18, 18, 0.88);
+    --panel-bg: rgba(20, 20, 20, 0.85);
     --panel-border: rgba(255, 255, 255, 0.08);
-    --panel-hover: rgba(255, 255, 255, 0.04);
 
-    --text-main: #f2f2f2;
-    --text-muted: #b8b8b8;
+    --bg-overlay: rgba(0, 0, 0, 0.65);
 }
 
 /* =========================
-   BODY + BACKGROUND
+   GLOBAL RESET
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY (NO BACKGROUND HERE)
    ========================= */
 body {
-    font-family: Arial, sans-serif;
-    background-image: url("https://cdn.discordapp.com/attachments/1337032578233925692/1457002893260624018/LunorBG.png?ex=695a6b2f&is=695919af&hm=d13236145f5f6725815c5a906163a3f9532b17583df529c74221999eefc4b46e&");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: none;
 
     color: var(--text-main);
     padding: 20px;
     font-size: 16px;
     line-height: 1.6;
+
+    overflow-x: hidden;
 }
 
-/* Dark overlay for readability */
+/* =========================
+   FIXED BACKGROUND LAYER
+   ========================= */
 body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: url("https://cdn.discordapp.com/attachments/1337032578233925692/1457002893260624018/LunorBG.png?ex=695a6b2f&is=695919af&hm=d13236145f5f6725815c5a906163a3f9532b17583df529c74221999eefc4b46e&");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -2;
+    will-change: transform;
+}
+
+/* Overlay gelap */
+body::after {
     content: "";
     position: fixed;
     inset: 0;
@@ -39,19 +62,19 @@ body::before {
 }
 
 /* =========================
-   TITLE
+   HEADER
    ========================= */
 .app-title {
-    font-size: 42px;
-    font-weight: 800;
-    margin-bottom: 6px;
-    color: #ffffff;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.app-subtitle {
-    font-size: 16px;
+.subtitle {
+    text-align: center;
     color: var(--text-muted);
-    margin-bottom: 24px;
+    margin-bottom: 40px;
 }
 
 /* =========================
@@ -60,82 +83,92 @@ body::before {
 details {
     background: var(--panel-bg);
     border: 1px solid var(--panel-border);
-    border-radius: 12px;
-    margin-bottom: 8px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    border-radius: 14px;
+    margin-bottom: 16px;
+    overflow: hidden;
+
+    backdrop-filter: blur(6px);
 }
 
-/* =========================
-   SUMMARY (HEADER)
-   ========================= */
+/* SUMMARY */
 summary {
-    padding: 14px 16px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-main);
     list-style: none;
+    cursor: pointer;
+
+    padding: 16px 18px;
+    font-size: 15px;
+    font-weight: 600;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     user-select: none;
-    transition: background 0.25s ease;
 }
 
-summary:hover {
-    background: var(--panel-hover);
-}
-
-/* Remove default marker */
+/* Remove default arrow */
 summary::-webkit-details-marker {
     display: none;
 }
 
-/* =========================
-   DROPDOWN ARROW (MINIMAL)
-   ========================= */
+/* Custom arrow (NO COLOR, ELEGANT) */
 summary::after {
     content: "›";
-    font-size: 18px;
-    opacity: 0.55;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    font-size: 20px;
+    transform: rotate(0deg);
+    transition: transform 0.35s ease;
+    opacity: 0.6;
 }
 
-details[open] > summary::after {
+/* Rotate arrow when open */
+details[open] summary::after {
     transform: rotate(90deg);
-    opacity: 0.85;
 }
 
 /* =========================
-   CONTENT LIST
+   DROPDOWN CONTENT (ANIMATION)
    ========================= */
-ul {
-    margin: 10px 0;
-    padding-left: 22px;
+details > .content {
+    max-height: 0;
+    overflow: hidden;
+
+    padding: 0 18px;
     color: var(--text-muted);
+
+    transition:
+        max-height 0.45s ease,
+        opacity 0.35s ease;
+
+    opacity: 0;
 }
 
-li {
-    margin: 6px 0;
+details[open] > .content {
+    max-height: 600px;
+    padding-bottom: 16px;
+    opacity: 1;
+}
+
+/* List styling */
+.content ul {
+    margin-top: 12px;
+    padding-left: 18px;
+}
+
+.content li {
+    margin-bottom: 6px;
 }
 
 /* =========================
-   OPEN STATE ACCENT (SUBTLE)
+   PERFORMANCE TUNING (GLOBAL)
    ========================= */
-details[open] > summary {
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+details,
+summary,
+.content {
+    contain: layout paint;
 }
 
 /* =========================
-   NESTED DETAILS
-   ========================= */
-details details {
-    margin: 6px 10px 10px;
-    background: rgba(16, 16, 16, 0.9);
-}
-
-/* =========================
-   RESPONSIVE
+   MOBILE RESPONSIVE
    ========================= */
 @media (max-width: 768px) {
     body {
@@ -154,24 +187,30 @@ details details {
 }
 
 /* =========================
-   MOBILE BACKGROUND
+   MOBILE BACKGROUND SWITCH
    ========================= */
-
 @media (max-width: 768px) and (orientation: portrait) {
-    body {
+    body::before {
         background-image: url("https://cdn.discordapp.com/attachments/1131946678136606761/1457021041497997363/Desain_tanpa_judul.png?ex=695a7c16&is=69592a96&hm=743183a7e3ffd8f8c3776031d4f6d9db4788bb83e21c2f6a0f11eee3373d4803&");
-        background-position: center top;
-        background-attachment: scroll;
     }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-    body {
-        background-image: url("https://cdn.discordapp.com/attachments/1131946678136606761/1457021041497997363/Desain_tanpa_judul.png?ex=695a7c16&is=69592a96&hm=743183a7e3ffd8f8c3776031d4f6d9db4788bb83e21c2f6a0f11eee3373d4803&");
-        background-position: center;
-        background-attachment: scroll;
+    body::before {
+        background-image: url("https://cdn.discordapp.com/attachments/1337032578233925692/1457002893260624018/LunorBG.png?ex=695a6b2f&is=695919af&hm=d13236145f5f6725815c5a906163a3f9532b17583df529c74221999eefc4b46e&");
     }
 }
 
+/* =========================
+   LOW-END MOBILE PERFORMANCE
+   ========================= */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 
-
+    body::before {
+        background-position: center top;
+    }
+}
