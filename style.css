@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url("https://cdn.discordapp.com/attachments/1337032578233925692/1457002893260624018/LunorBG.png");
+    background-image: url("https://cdn.discordapp.com/attachments/1337032578233925692/1457002893260624018/LunorBG.png?ex=695a6b2f&is=695919af&hm=d13236145f5f6725815c5a906163a3f9532b17583df529c74221999eefc4b46e&");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -64,4 +64,5 @@ ul {
 .server-webhook summary { background-color: #c0392b; color: #fff; }
 .visuals summary { background-color: #8e44ad; color: #fff; }
 .configs summary { background-color: #d35400; color: #fff; }
+
 
