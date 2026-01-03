@@ -5,61 +5,98 @@
 <title>The Forge - Full Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+/* ===== Dark Mode Base ===== */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #121212;
+    color: #e0e0e0;
     padding: 20px;
     font-size: 16px;
     line-height: 1.5;
+}
+
+h1, p {
+    color: #fff;
 }
 
 details, summary {
     padding: 10px;
     border-radius: 6px;
     cursor: pointer;
+    background-color: #1f1f1f;
+    margin-bottom: 5px;
 }
 
+summary {
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Smooth dropdown animation */
+details > ul, details > details > ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    padding-left: 20px;
+}
+
+details[open] > ul, details[open] > details > ul {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+details details > ul {
+    padding-left: 15px;
+}
+
+/* List styles */
 ul {
-    margin-left: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-        font-size: 14px;
-    }
-    summary {
-        padding: 8px;
-        font-size: 14px;
-    }
-    ul {
-        margin-left: 15px;
-        font-size: 14px;
-    }
-    details {
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
+    body { padding: 10px; font-size: 14px; }
+    summary { padding: 8px; font-size: 14px; }
+    ul { margin-left: 15px; font-size: 14px; }
+    details { max-width: 100%; overflow-wrap: break-word; }
 }
 
-    /* Category Colors */
-    .auto-farm summary { background-color: #1abc9c; color: #fff; }
-    .auto-farming summary { background-color: #16a085; color: #fff; }
-    .bosses summary { background-color: #e74c3c; color: #fff; }
-    .farming-settings summary { background-color: #3498db; color: #fff; }
-    .items summary { background-color: #9b59b6; color: #fff; }
-    .potions summary { background-color: #f39c12; color: #fff; }
-    .selling summary { background-color: #27ae60; color: #fff; }
-    .race-enhance summary { background-color: #e67e22; color: #fff; }
-    .teleports summary { background-color: #2980b9; color: #fff; }
-    .misc summary { background-color: #1abc9c; color: #fff; }
-    .server-webhook summary { background-color: #e74c3c; color: #fff; }
-    .visuals summary { background-color: #9b59b6; color: #fff; }
-    .configs summary { background-color: #f39c12; color: #fff; }
-    ul { margin-left: 20px; margin-top: 5px; margin-bottom: 5px; }
+/* Category Colors */
+.auto-farm summary { background-color: #16a085; color: #fff; }
+.auto-farming summary { background-color: #1abc9c; color: #fff; }
+.bosses summary { background-color: #c0392b; color: #fff; }
+.farming-settings summary { background-color: #2980b9; color: #fff; }
+.items summary { background-color: #8e44ad; color: #fff; }
+.potions summary { background-color: #d35400; color: #fff; }
+.selling summary { background-color: #27ae60; color: #fff; }
+.race-enhance summary { background-color: #e67e22; color: #fff; }
+.teleports summary { background-color: #34495e; color: #fff; }
+.misc summary { background-color: #1abc9c; color: #fff; }
+.server-webhook summary { background-color: #c0392b; color: #fff; }
+.visuals summary { background-color: #8e44ad; color: #fff; }
+.configs summary { background-color: #d35400; color: #fff; }
 </style>
+<script>
+// Smooth animation for <details>
+document.querySelectorAll('details').forEach((detail) => {
+    detail.addEventListener('toggle', (e) => {
+        const el = e.target;
+        const ul = el.querySelector('ul, details > ul');
+        if (!ul) return;
+        if (el.open) {
+            const height = ul.scrollHeight;
+            ul.style.maxHeight = height + "px";
+            ul.style.opacity = 1;
+        } else {
+            ul.style.maxHeight = 0;
+            ul.style.opacity = 0;
+        }
+    });
+});
+</script>
 </head>
 <body>
 
