@@ -276,4 +276,45 @@ details li {
     -webkit-touch-callout: none;
 }
 
+/* =========================
+   EDGE SCROLLBAR FIX
+   ========================= */
+
+/* Prevent Edge from creating fake scrollbar during animation */
+html {
+    scrollbar-gutter: stable;
+}
+
+/* Lock horizontal overflow completely */
+body {
+    overflow-x: hidden;
+}
+/* =========================
+   MODERN SCROLLBAR (WINDOWS)
+   ========================= */
+
+/* Only apply on Windows browsers */
+@media (hover: hover) and (pointer: fine) {
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+}
+
+
 
