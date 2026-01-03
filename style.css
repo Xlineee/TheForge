@@ -21,20 +21,19 @@
 }
 
 /* =========================
-   BODY (iOS FONT APPLIED)
+   BODY (FONT ONLY CHANGED)
    ========================= */
 body {
     font-family:
+        "Inter",
+        system-ui,
         -apple-system,
         BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        system-ui,
         "Segoe UI",
-        Roboto,
         Arial,
         sans-serif;
 
+    font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
@@ -118,10 +117,12 @@ summary {
     user-select: none;
 }
 
+/* Remove default arrow */
 summary::-webkit-details-marker {
     display: none;
 }
 
+/* Custom arrow */
 summary::after {
     content: "›";
     font-size: 20px;
@@ -130,12 +131,13 @@ summary::after {
     opacity: 0.6;
 }
 
+/* Rotate arrow when open */
 details[open] summary::after {
     transform: rotate(90deg);
 }
 
 /* =========================
-   DROPDOWN CONTENT (ANIMATION)
+   DROPDOWN CONTENT
    ========================= */
 details > ul,
 details > details {
@@ -163,11 +165,12 @@ details[open] > .content {
 }
 
 /* =========================
-   BULLET LIST FIX
+   BULLET LIST (FIXED)
    ========================= */
 details ul {
     margin-top: 12px;
     margin-bottom: 12px;
+
     padding-left: 28px;
     list-style-type: disc;
 }
@@ -175,10 +178,11 @@ details ul {
 details li {
     margin-bottom: 6px;
     list-style-position: outside;
+    font-weight: 400;
 }
 
 /* =========================
-   PERFORMANCE TUNING
+   PERFORMANCE
    ========================= */
 details,
 summary {
