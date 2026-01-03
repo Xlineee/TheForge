@@ -3,28 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <title>The Forge - Full Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+details, summary {
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+ul {
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        padding: 20px;
-    }
-    h1 {
-        color: #1abc9c;
-    }
-    details {
-        margin: 8px 0;
-        padding: 5px;
-        border-radius: 6px;
-        background-color: #ffffff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        padding: 10px;
+        font-size: 14px;
     }
     summary {
-        font-weight: bold;
-        padding: 6px 10px;
-        cursor: pointer;
-        border-radius: 4px;
+        padding: 8px;
+        font-size: 14px;
     }
+    ul {
+        margin-left: 15px;
+        font-size: 14px;
+    }
+    details {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}
+
     /* Category Colors */
     .auto-farm summary { background-color: #1abc9c; color: #fff; }
     .auto-farming summary { background-color: #16a085; color: #fff; }
