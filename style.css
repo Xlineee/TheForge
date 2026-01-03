@@ -233,3 +233,47 @@ summary {
     }
 }
 
+summary {
+    transition:
+        background 0.25s ease,
+        transform 0.18s ease;
+}
+
+/* Touch (mobile) */
+summary:active {
+    transform: scale(0.985);
+}
+
+/* Mouse (desktop) */
+@media (hover: hover) {
+    summary:hover {
+        background: rgba(255, 255, 255, 0.03);
+    }
+}
+
+details {
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.app-title {
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    letter-spacing: -0.01em;
+}
+
+summary {
+    font-weight: 600;
+}
+
+details li {
+    font-weight: 400;
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+
