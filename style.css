@@ -21,10 +21,23 @@
 }
 
 /* =========================
-   BODY (NO BACKGROUND HERE)
+   BODY (iOS FONT APPLIED)
    ========================= */
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        system-ui,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     background: none;
 
     color: var(--text-main);
@@ -87,7 +100,6 @@ details {
     margin-bottom: 16px;
 
     backdrop-filter: blur(6px);
-    /* ❌ overflow REMOVED here (BULLET FIX) */
 }
 
 /* SUMMARY */
@@ -106,12 +118,10 @@ summary {
     user-select: none;
 }
 
-/* Remove default arrow */
 summary::-webkit-details-marker {
     display: none;
 }
 
-/* Custom arrow */
 summary::after {
     content: "›";
     font-size: 20px;
@@ -120,7 +130,6 @@ summary::after {
     opacity: 0.6;
 }
 
-/* Rotate arrow when open */
 details[open] summary::after {
     transform: rotate(90deg);
 }
@@ -128,8 +137,6 @@ details[open] summary::after {
 /* =========================
    DROPDOWN CONTENT (ANIMATION)
    ========================= */
-
-/* BULLET FIX: overflow dipindah ke child */
 details > ul,
 details > details {
     overflow: hidden;
@@ -156,14 +163,13 @@ details[open] > .content {
 }
 
 /* =========================
-   BULLET LIST FIX (FINAL)
+   BULLET LIST FIX
    ========================= */
 details ul {
     margin-top: 12px;
     margin-bottom: 12px;
-
-    padding-left: 28px;        /* ruang bullet */
-    list-style-type: disc;     /* bullet muncul */
+    padding-left: 28px;
+    list-style-type: disc;
 }
 
 details li {
@@ -222,4 +228,3 @@ summary {
         background-position: center top;
     }
 }
-
