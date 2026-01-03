@@ -383,22 +383,44 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Mask ONLY the scrollbar gutter (right side) */
-@supports selector(::-webkit-scrollbar) {
-    html::after {
-        content: "";
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 16px; /* typical Windows scrollbar width */
-        height: 100vh;
+/* =========================
+   WINDOWS DESKTOP SCROLLBAR MASK (FINAL)
+   ========================= */
 
-        background: rgba(0, 0, 0, 0.65);
-        pointer-events: none;
+/* Base background to avoid white gutter */
+html {
+    background-color: #000;
+}
 
-        z-index: 0; /* IMPORTANT: no negative z-index */
+/* Prevent horizontal shift */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ONLY desktop devices (mouse + hover) */
+@media (hover: hover) and (pointer: fine) {
+
+    /* Chromium-based browsers */
+    @supports selector(::-webkit-scrollbar) {
+        html::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            right: 0;
+
+            width: 16px; /* scrollbar width */
+            height: 100vh;
+
+            background: rgba(0, 0, 0, 0.65);
+            pointer-events: none;
+
+            z-index: 0;
+        }
     }
 }
+
+
 
 
 
