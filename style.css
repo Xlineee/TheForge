@@ -368,21 +368,39 @@ html {
 body {
     margin-right: 0 !important;
 }
+/* =========================
+   WINDOWS SCROLLBAR MASK (FINAL CLEAN)
+   ========================= */
 
-/* Chromium scrollbar gutter cover */
+/* Base background to avoid white gutter */
+html {
+    background-color: #000;
+}
+
+/* Lock layout width */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Mask ONLY the scrollbar gutter (right side) */
 @supports selector(::-webkit-scrollbar) {
-    body::after {
+    html::after {
         content: "";
         position: fixed;
         top: 0;
         right: 0;
-        width: 16px;              /* scrollbar width */
+        width: 16px; /* typical Windows scrollbar width */
         height: 100vh;
-        background: rgba(0,0,0,0.65); /* SAME overlay */
+
+        background: rgba(0, 0, 0, 0.65);
         pointer-events: none;
-        z-index: -1;
+
+        z-index: 0; /* IMPORTANT: no negative z-index */
     }
 }
+
+
 
 
 
