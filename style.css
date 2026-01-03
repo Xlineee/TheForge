@@ -151,11 +151,13 @@ details[open] > .content {
 /* List styling */
 .content ul {
     margin-top: 12px;
-    padding-left: 18px;
+    padding-left: 24px;        /* jarak ke kiri */
+    list-style: disc;          /* balikin bullet */
 }
 
 .content li {
     margin-bottom: 6px;
+    list-style-position: outside;
 }
 
 /* =========================
@@ -189,9 +191,12 @@ summary,
 /* =========================
    MOBILE BACKGROUND SWITCH
    ========================= */
-@media (max-width: 768px) and (orientation: portrait) {
+/* Detect REAL mobile device (even desktop mode) */
+@media (hover: none) and (pointer: coarse) {
     body::before {
         background-image: url("https://cdn.discordapp.com/attachments/1131946678136606761/1457021041497997363/Desain_tanpa_judul.png?ex=695a7c16&is=69592a96&hm=743183a7e3ffd8f8c3776031d4f6d9db4788bb83e21c2f6a0f11eee3373d4803&");
+        background-attachment: scroll;
+        background-position: center top;
     }
 }
 
@@ -214,3 +219,4 @@ summary,
         background-position: center top;
     }
 }
+
